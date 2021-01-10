@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %} 
+{% block title %} Главная {%endblock%}
+{% block main %} 
+    <h1>Главная</h1>
+    <div class='container'>
+        <div class='row'>
+            {% for student in students %}
+            <div class='col-4'>
+                    <h5>{{student.id}}: {{student.name}} {{student.surname}}</h5>
+                    {% with student.photos.all as photos %}
+                    {% for photo in photos %}
+                    <img class='img-fluid rounded ' src='{{photo.url}}'>
+                    {% endfor %}
+                    {% endwith %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
