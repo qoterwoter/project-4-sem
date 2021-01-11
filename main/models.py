@@ -1,11 +1,19 @@
 from django.db import models
 
+STATUS_CHOICE = (
+    ('y','Учится'),
+    ('n',"Отчсилен"),
+    ('q','Зачислен'),
+    ('a','Решается')
+)
+
 class Students(models.Model):
     
     id = models.AutoField(primary_key=True)
     name = models.TextField("Имя студента")
     surname = models.TextField('Фамилия студента')
-
+    status = models.CharField(max_length=1, choices=STATUS_CHOICE)
+    course = models.IntegerField('Курс')
     class Meta:
         verbose_name = ("Студент")
         verbose_name_plural = ("Студенты")
@@ -32,7 +40,7 @@ class Projects(models.Model):
     project_id = models.AutoField(primary_key=True)
     name = models.TextField('Название проекта')
     description = models.TextField('Описание проекта')
-
+    isDone = models.BooleanField
     class Meta:
         verbose_name = ("Проект")
         verbose_name_plural = ("Проекты")
