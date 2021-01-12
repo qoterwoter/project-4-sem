@@ -5,8 +5,9 @@
     <div class='container'>
         <div class='row'>
             {% for student in students %}
-            <div class='col-4'>
+            <div class='col-3 m-4 p-3'>
                     <h5>{{student.id}}: {{student.name}} {{student.surname}}</h5>
+                    <p>Учится на  {{student.course}} курсе</p>
                     {% with student.photos.all as photos %}
                     {% for photo in photos %}
                     <img class='img-fluid rounded ' src='{{photo.url}}'>

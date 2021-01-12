@@ -10,3 +10,6 @@ def index(request):
 
 def about(request):
     return render(request, 'about/about.html')
+
+def landing(request):
+    return render(request, 'landing/landing.html')

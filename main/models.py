@@ -37,7 +37,7 @@ class StudentsPhoto(models.Model):
 
 class Projects(models.Model):
     
-    project_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     name = models.TextField('Название проекта')
     description = models.TextField('Описание проекта')
     isDone = models.BooleanField
@@ -51,8 +51,8 @@ class Projects(models.Model):
 class StudentsProjects(models.Model):
 
     id = models.AutoField(primary_key = True)
-    student_id = models.ForeignKey(Students,related_name='students', on_delete=models.CASCADE)
-    project_id = models.ForeignKey(Projects,related_name='projcets', on_delete=models.CASCADE)
+    student_id = models.ForeignKey(Students, on_delete=models.CASCADE)
+    project_id = models.ForeignKey(Projects, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = ("Проект студента")

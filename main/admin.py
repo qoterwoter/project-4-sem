@@ -1,10 +1,10 @@
 from django.contrib import admin
 from .models import Students, StudentsPhoto, Projects, StudentsProjects, Lessons, StudentsLessons, Clients, EngineerProjects, Teachers, TeachersPhotos
 from django.db.models.functions import Lower
-
-
+from import_export.admin import ImportExportModelAdmin
+from import_export.formats import base_formats
 @admin.register(Students)
-class StudentsAdmin(admin.ModelAdmin):
+class StudentsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ("id","name","surname","status",'course')
     search_fields = ['name','surname']
     actions=['restore','make_published','make_second_course','make_thirdly_course']
@@ -19,9 +19,20 @@ class StudentsAdmin(admin.ModelAdmin):
         queryset.update(course=3)
     def restore(self,request, queryset):
         queryset.update(status='y')
-
-    make_published.short_description='Отчислить'
-    restore.short_description='Восстановить'
+    def get_import_formats(self):
+            formats = (
+                  base_formats.XLS,
+                  base_formats.XLSX,
+            )
+            return [f for f in formats if f().can_import()]
+    def get_export_formats(self):
+            formats = (
+                  base_formats.XLS,
+                  base_formats.XLSX,
+            )
+            return [f for f in formats if f().can_export()]
+    make_published.short_description='Отчислить выбранных студентов'
+    restore.short_description='Восстановить выбранных студентов'
     make_second_course.short_description='Перевести на второй курс'
     make_thirdly_course.short_description='Перевести на третий курс'
     
@@ -36,13 +47,24 @@ class StudentsPhotoAdmin(admin.ModelAdmin):
 
 
 @admin.register(Projects)
-class ProjectsAdmin(admin.ModelAdmin):
+class ProjectsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ("name","description")
     search_fields = ['name','description']
     pass
     def get_ordering(self, request):
         return [Lower('name')]
-
+    def get_import_formats(self):
+            formats = (
+                  base_formats.XLS,
+                  base_formats.XLSX,
+            )
+            return [f for f in formats if f().can_import()]
+    def get_export_formats(self):
+            formats = (
+                  base_formats.XLS,
+                  base_formats.XLSX,
+            )
+            return [f for f in formats if f().can_export()]
 
 @admin.register(StudentsProjects)
 class StudentsProjectsAdmin(admin.ModelAdmin):
@@ -62,12 +84,12 @@ class LessonsAdmin(admin.ModelAdmin):
 
 @admin.register(StudentsLessons)
 class StudentsLessonsAdmin(admin.ModelAdmin):
-    list_display = ("id","lesson" ,"student")
+    list_display = ("lesson" ,"student")
     search_fields = ['student__name','lesson__name']
     list_filter = ['lesson',"student"]
+    ordering = ['lesson__name']
     pass
-    def get_ordering(self, request):
-        return [Lower('id')]
+
 
 
 @admin.register(Clients)
@@ -87,12 +109,24 @@ class EngineerProjectsAdmin(admin.ModelAdmin):
         return [Lower('name')]
 
 @admin.register(Teachers)
-class TeachersAdmin(admin.ModelAdmin):
+class TeachersAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display= ("id",'name','surname','experience')
     search_fields = ['name',"surname"]
     pass
     def get_ordering(self, request):
         return [Lower('id')]
+    def get_import_formats(self):
+            formats = (
+                  base_formats.XLS,
+                  base_formats.XLSX,
+            )
+            return [f for f in formats if f().can_import()]
+    def get_export_formats(self):
+            formats = (
+                  base_formats.XLS,
+                  base_formats.XLSX,
+            )
+            return [f for f in formats if f().can_export()]
 
 @admin.register(TeachersPhotos)
 class TeachersPhotos(admin.ModelAdmin):
