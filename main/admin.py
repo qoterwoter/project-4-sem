@@ -112,7 +112,6 @@ class EngineerProjectsAdmin(admin.ModelAdmin):
 class TeachersAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display= ("id",'name','surname','experience')
     search_fields = ['name',"surname"]
-    pass
     def get_ordering(self, request):
         return [Lower('id')]
     def get_import_formats(self):
