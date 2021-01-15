@@ -6,7 +6,10 @@ Django==3.1.5
 django-heroku==0.3.1
 django-import-export==2.5.0
 et-xmlfile==1.0.1
+<<<<<<< HEAD
 gunicorn==20.0.4
+=======
+>>>>>>> documents
 jdcal==1.4.1
 MarkupPy==1.14
 odfpy==1.4.1
@@ -19,4 +22,7 @@ tablib==3.0.0
 whitenoise==5.2.0
 xlrd==2.0.1
 xlwt==1.3.0
+<<<<<<< HEAD
 djangorestframework==3.11.0
+=======
+>>>>>>> documents
