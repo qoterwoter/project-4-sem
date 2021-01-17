@@ -25,7 +25,7 @@ SECRET_KEY = '#des6k!(mf^b30huc$zas*c$!sm-3gnv36tgdt+dpp%si*!z+b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['project-3sem.std-962.ist.mospolytech.ru']
 
 
 
