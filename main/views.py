@@ -1,8 +1,18 @@
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from django.shortcuts import render
+from django.http import JsonResponse
 from .models import  Students, Projects, StudentsPhoto, StudentsProjects
-from .serializers import StudentsSerializer, ProjectsSerializer
+from .serializers import *
+from rest_framework.authentication import TokenAuthentication,SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import User
+from rest_framework import viewsets;
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 def index(request):
     students = Students.objects.all()
@@ -18,17 +28,26 @@ def landing(request):
 def admin(request):
     return render(request, "/admin")
 
-def students(request):
-    return render(request,'/students')
-
 def projects(request):
     return render(request,'/projects')
 
+class UserView(APIView):
+    authentication_classes = [SessionAuthentication, BasicAuthentication,TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, forman=None):
+        content = {
+            'user' : str(request.user),
+            'auth' : str(request.auth),
+        }
+        return Response(content)
 class StudentsView(APIView):
     def get(self, request):
         StudentsApi = Students.objects.all()
         serializer = StudentsSerializer(StudentsApi, many=True)
-        return Response({"Students": serializer.data})
+        authentication_classes = [TokenAuthentication, ]
+        permission_classes = [IsAuthenticated, ]
+        return JsonResponse({"data": serializer.data})
 
     def post(self, request):
         StudentsApi = request.data.get('Students')
@@ -41,7 +60,7 @@ class ProjectsView(APIView):
     def get(self, request):
         ProjectsApi = Projects.objects.all()
         serializer = ProjectsSerializer(ProjectsApi, many=True)
-        return Response({"Projects": serializer.data})
+        return JsonResponse({"Projects": serializer.data})
 
     def post(self, request):
         ProjectsApi = request.data.get('Projects')
