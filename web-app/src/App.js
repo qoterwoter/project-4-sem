@@ -12,8 +12,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       is_logged: sessionStorage.getItem('token') ? true: false,
-      users: []
+      users: [],
+      token: null,
     }
+  }
+  onChangeToken = e => {
+    this.setState(e)
   }
   getPermissions = event => {
     fetch('http://localhost:8000/api/users/',{
@@ -28,7 +32,7 @@ class App extends React.Component {
       this.setState({users:res})
       this.state.users.map(user=>{
         console.log(user)
-        if(user.username==sessionStorage.getItem('username')) {
+        if(user.username===sessionStorage.getItem('username')) {
           sessionStorage.setItem('is_staff',user.is_staff)
           sessionStorage.setItem('is_superuser',user.is_superuser)
         }
@@ -42,10 +46,10 @@ class App extends React.Component {
     }
   }
   render() {
-    if(sessionStorage.getItem('token')==null||sessionStorage.getItem('token')==undefined) {
+    if(sessionStorage.getItem('token')===null||sessionStorage.getItem('token')===undefined) {
       return (
       <Router>
-        <LoginForm></LoginForm>
+        <LoginForm token={this.state.token}/>
       </Router>
       )
     } else {
@@ -59,11 +63,6 @@ class App extends React.Component {
         <Route path='/ApiTest'>
           <ApiTest/>
         </Route>
-      {/* {
-      !sessionStorage.getItem('token')==''
-      ? app
-      : login
-      } */}
       </Switch>
     </Router> 
   )}}

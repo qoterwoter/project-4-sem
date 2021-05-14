@@ -25,15 +25,18 @@ class Login extends React.Component {
     .then(res=>{
       console.log(res.token)
       this.setState({data:res})
-      sessionStorage.setItem('token',res.token)
+      if(res.token!==null||res.token!==undefined) {
+        sessionStorage.setItem('token',res.token)
+      }
     })
     .catch(err=>console.error(err))
 
-    if(sessionStorage.getItem('token')!='' || sessionStorage.getItem('token')!=undefined) {
+
+    if(sessionStorage.getItem('token')!==null || sessionStorage.getItem("token")!==undefined || sessionStorage.getItem('token')!=='') {
       this.props.history.push("/Main")
       setTimeout(()=>{
         window.location.reload()
-      },500)
+      },200)
     }
   }
 
