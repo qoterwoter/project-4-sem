@@ -16,7 +16,8 @@ class App extends React.Component {
       token: null,
       is_staff: sessionStorage.getItem('is_staff'),
       is_superuser: sessionStorage.getItem('is_superuser'),
-      url: 'http://localhost:8000/'
+      // url: 'http://localhost:8000/'
+      url: 'http://project-4-sem.std-962.ist.mospolytech.ru/'
     }
   }
   onChangeToken = e => {
