@@ -16,13 +16,14 @@ class App extends React.Component {
       token: null,
       is_staff: sessionStorage.getItem('is_staff'),
       is_superuser: sessionStorage.getItem('is_superuser'),
+      url: 'http://localhost:8000/'
     }
   }
   onChangeToken = e => {
     this.setState(e)
   }
   getPermissions = event => {
-    fetch('http://localhost:8000/api/users/',{
+    fetch(`${this.state.url}api/users/`,{
       method: "GET",
       headers: {
         'Content-type' :'application/json',
@@ -50,7 +51,10 @@ class App extends React.Component {
     if(sessionStorage.getItem('token')===null||sessionStorage.getItem('token')===undefined) {
       return (
       <Router>
-        <LoginForm token={this.state.token}/>
+        <LoginForm 
+          token={this.state.token}
+          url={this.state.url}
+        />
       </Router>
       )
     } else {
@@ -65,7 +69,9 @@ class App extends React.Component {
           />
         </Route>
         <Route path='/ApiTest'>
-          <ApiTest/>
+          <ApiTest
+            url = {this.state.url}
+          />
         </Route>
       </Switch>
     </Router> 

@@ -14,7 +14,7 @@ class Login extends React.Component {
   }
   login = event => {
     event.preventDefault()
-    fetch('http://localhost:8000/auth/', {
+    fetch(`${this.props.url}auth/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

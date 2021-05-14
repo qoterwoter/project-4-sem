@@ -6,7 +6,6 @@ __pycache__/
 venv/
 media/**.*
 logs/*.log
-
 # local env files
 core/.env
 frontend/.env.production
