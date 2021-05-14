@@ -17,7 +17,7 @@ export default class Header extends React.Component {
     render() {return(
         <header>
             <nav className='navbar navbar-expand navbar-light bg-light'>
-                <a href='#' className='navbar-brand'>AllStudents</a>
+                <a href='#brand' className='navbar-brand'>AllStudents</a>
                 <ul className='navbar-nav mr-auto'>
                     <li className='nav-link'>
                         <Link className='nav-item nav-link' to='/Main'>Главная</Link>
@@ -26,7 +26,7 @@ export default class Header extends React.Component {
                         <Link className='nav-item nav-link' to='/ApiTest'>ApiTest</Link>
                     </li>
                     <li className='nav-link'>
-                        <a className='nav-item nav-link' href='#' onClick={this.logout}>Выйти</a>
+                        <a className='nav-item nav-link' href='#logout' onClick={this.logout}>Выйти</a>
                     </li>
                     <li className='nav-link'>
                         <a className='nav-item nav-link' href='http://localhost:8000/students/'>RestAPI</a>

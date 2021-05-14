@@ -7,11 +7,11 @@ export default class Main extends React.Component {
         return(
         <main className='container'>
             <h2>Мой проект</h2>
-            {sessionStorage.getItem('is_staff')==="true"
+            {this.props.is_staff===true
             ? <Staff/>
             : null
             }
-            {sessionStorage.getItem('is_superuser')==="true"
+            {this.props.is_superuser===true
             ? <Admin/>
             : null
             }

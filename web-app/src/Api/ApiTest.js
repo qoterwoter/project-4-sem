@@ -12,7 +12,6 @@ export default class ApiTest extends React.Component {
     }
     componentDidMount() {
         apiService.getStudents().then(response=> {
-            console.log(response.data)
             this.setState({students: response.data})
         })
     
@@ -44,12 +43,14 @@ export default class ApiTest extends React.Component {
         return (
             <main className='container'>
                 <h2>Список студентов</h2>
-                {this.state.students.map((student)=> <div>
-                    <p>
+                <ul>
+                {this.state.students.map((student)=>
+                    <li key={student.id}>
                         #{student.id}: {student.name} {student.surname}<br/>
                         {this.getStatus(student.status)} {student.course} курсе
-                    </p>
-                </div>)}
+                    </li>
+                )}
+                </ul>
             </main>
         )
     }

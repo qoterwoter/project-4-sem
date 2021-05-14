@@ -14,6 +14,8 @@ class App extends React.Component {
       is_logged: sessionStorage.getItem('token') ? true: false,
       users: [],
       token: null,
+      is_staff: sessionStorage.getItem('is_staff'),
+      is_superuser: sessionStorage.getItem('is_superuser'),
     }
   }
   onChangeToken = e => {
@@ -31,10 +33,9 @@ class App extends React.Component {
     .then(res=>{
       this.setState({users:res})
       this.state.users.map(user=>{
-        console.log(user)
-        if(user.username===sessionStorage.getItem('username')) {
-          sessionStorage.setItem('is_staff',user.is_staff)
-          sessionStorage.setItem('is_superuser',user.is_superuser)
+          if(user.username===sessionStorage.getItem('username')) {
+            this.setState({'is_staff':user.is_staff})
+            this.setState({'is_superuser':user.is_superuser})
         }
       })
     })
@@ -58,7 +59,10 @@ class App extends React.Component {
       <Header/>
       <Switch>
       <Route path='/Main'>
-          <Main/>
+          <Main
+            is_staff={this.state.is_staff}
+            is_superuser={this.state.is_superuser}
+          />
         </Route>
         <Route path='/ApiTest'>
           <ApiTest/>
