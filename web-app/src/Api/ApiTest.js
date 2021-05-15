@@ -18,27 +18,6 @@ export default class ApiTest extends React.Component {
     }
 
 
-    getStatus(status) {
-        let outStat;
-        switch(status) {
-            case 'q':
-                outStat = 'Зачислен на'
-                break
-            case 'y':
-                outStat = 'Учится на'
-                break
-            case 'a':
-                outStat = 'Решается об обучении на'
-                break
-            case 'n':
-                outStat = 'Отчислен после'
-                break
-            default:
-                break
-        }
-        return outStat
-    }
-
     render()  {
         return (
             <main className='container'>
@@ -47,7 +26,7 @@ export default class ApiTest extends React.Component {
                 {this.state.students.map((student)=>
                     <li key={student.id}>
                         #{student.id}: {student.name} {student.surname}<br/>
-                        {this.getStatus(student.status)} {student.course} курсе
+                        {apiService.getStatus(student.status)} {student.course} курсе
                     </li>
                 )}
                 </ul>

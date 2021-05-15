@@ -1,0 +1,10 @@
+.my-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify !important;
+      -ms-flex-pack: justify !important;
+          justify-content: space-between !important;
+  color: yellow;
+}
+/*# sourceMappingURL=Style.css.map */

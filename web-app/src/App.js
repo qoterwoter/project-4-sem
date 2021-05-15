@@ -5,7 +5,7 @@ import Header from './Components/Header'
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Main from './Components/Main';
 import LoginForm from './Components/LoginForm';
-
+import CreateUpdateStudent from './Components/CreateUpdateStudent'
 class App extends React.Component {
 
   constructor(props) {
@@ -17,7 +17,7 @@ class App extends React.Component {
       is_staff: sessionStorage.getItem('is_staff'),
       is_superuser: sessionStorage.getItem('is_superuser'),
       // url: 'http://localhost:8000/'
-      url: 'http://project-4-sem.std-962.ist.mospolytech.ru/'
+      url: 'http://localhost:8000/'
     }
   }
   onChangeToken = e => {
@@ -34,10 +34,12 @@ class App extends React.Component {
     .then(res => res.json())
     .then(res=>{
       this.setState({users:res})
-      this.state.users.map(user=>{
+      this.state.users.map((user)=>{
           if(user.username===sessionStorage.getItem('username')) {
             this.setState({'is_staff':user.is_staff})
             this.setState({'is_superuser':user.is_superuser})
+            console.log(`is_staff: ${this.state.is_staff}`)
+            console.log(`is_superuser: ${this.state.is_superuser}`)
         }
       })
     })
@@ -73,6 +75,10 @@ class App extends React.Component {
           <ApiTest
             url = {this.state.url}
           />
+        </Route>
+        <Route path='/CreateUpdateStudent' component={CreateUpdateStudent}>
+        </Route>
+        <Route path='/CreateUpdateStudent/:id' exact component={CreateUpdateStudent}>
         </Route>
       </Switch>
     </Router> 

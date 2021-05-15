@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from django.shortcuts import render
 from django.http import JsonResponse
+from rest_framework import status
 from .models import  Students, Projects, StudentsPhoto, StudentsProjects
 from .serializers import *
 from rest_framework.authentication import TokenAuthentication,SessionAuthentication, BasicAuthentication
@@ -41,20 +42,57 @@ class UserView(APIView):
             'auth' : str(request.auth),
         }
         return Response(content)
-class StudentsView(APIView):
-    def get(self, request):
-        StudentsApi = Students.objects.all()
-        serializer = StudentsSerializer(StudentsApi, many=True)
+# class StudentsView(APIView):
+#     def get(self, request):
+#         StudentsApi = Students.objects.all()
+#         serializer = StudentsSerializer(StudentsApi, many=True)
+#         authentication_classes = [TokenAuthentication, ]
+#         permission_classes = [IsAuthenticated, ]
+#         return JsonResponse({"data": serializer.data})
+
+#     def post(self, request):
+#         StudentsApi = request.data.get('Students')
+#         serializer = StudentsSerializer(data=StudentsApi)
+#         if serializer.is_valid(raise_exception=True):
+#             employee_saved = serializer.save()
+#         return Response({"success": "Employee '{}' created successfully".format(employee_saved.name)})
+@api_view(['GET','POST'])
+def students_list(request):
+    if request.method == 'GET':
+        students = Students.objects.all()
+        serializer = StudentsSerializer(students, many=True)
         authentication_classes = [TokenAuthentication, ]
         permission_classes = [IsAuthenticated, ]
         return JsonResponse({"data": serializer.data})
 
-    def post(self, request):
-        StudentsApi = request.data.get('Students')
-        serializer = StudentsSerializer(data=StudentsApi)
-        if serializer.is_valid(raise_exception=True):
-            employee_saved = serializer.save()
-        return Response({"success": "Employee '{}' created successfully".format(employee_saved.name)})
+    elif request.method == 'POST':
+        serializer = StudentsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['GET','PUT','DELETE'])
+def students_detail(request,id):
+    try:
+        student = Students.objects.get(id=id)
+    except Students.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = StudentsSerializer(student)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = StudentsSerializer(student, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        student.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class ProjectsView(APIView):
     def get(self, request):

@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         return user
 class StudentsSerializer(serializers.Serializer):
-    id = serializers.CharField()
+    id = serializers.ReadOnlyField()
     name = serializers.CharField(max_length=120)
     surname = serializers.CharField(max_length=120)
     status = serializers.CharField(max_length=120)
