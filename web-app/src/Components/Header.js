@@ -16,27 +16,25 @@ export default class Header extends React.Component {
     }
 
     render() {return(
-        <header>
-            <nav className='navbar navbar-expand-lg navbar-light bg-light'>
-                <a href='#brand' className='navbar-brand'>AllStudents</a>
-                <div className='my-nav'>
-                    <ul className='navbar-nav '>
-                        <li className='nav-link'>
-                            <Link className='nav-item nav-link' to='/Main'>Главная</Link>
-                        </li>
-                        <li className='nav-link'>
-                            <Link className='nav-item nav-link' to='/ApiTest'>ApiTest</Link>
-                        </li>
-                        <li className='nav-link'>
-                            <a className='nav-item nav-link' href='http://localhost:8000/students/'>RestAPI</a>
-                        </li>
-                    </ul>
-                    <ul className='navbar-nav '>
-                        <li className='nav-link'>
-                            <a className='nav-item nav-link' href='#logout' onClick={this.logout}>Выйти</a>
-                        </li>
-                    </ul>
-                </div>
+        <header className='header'>
+            <nav className='navbar'>
+                <a href='#brand' className='navbar__brand'>AllStudents</a>
+                <ul className='navbar__ul ul__links'>
+                    <li className='navbar__item'>
+                        <Link className='navbar__link' to='/Main'>Главная</Link>
+                    </li>
+                    <li className='navbar__item'>
+                        <Link className='navbar__link' to='/ApiTest'>ApiTest</Link>
+                    </li>
+                    <li className='navbar__item'>
+                        <a className='navbar__link' href='http://localhost:8000/students/'>RestAPI</a>
+                    </li>
+                </ul>
+                <ul className='navbar__ul'>
+                    <li className='navbar__item'>
+                        <a className='navbar__link' href='#logout' onClick={this.logout}>Выйти</a>
+                    </li>
+                </ul>
             </nav>
         </header>
     )}

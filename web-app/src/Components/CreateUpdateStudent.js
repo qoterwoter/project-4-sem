@@ -1,6 +1,7 @@
 import React from 'react'
 import ApiService from '../Api/ApiService';
 import {Link} from 'react-router-dom'
+import queryString from 'query-string';
 
 const apiService = new ApiService();
 
@@ -8,11 +9,10 @@ export default class CreateUpdateStudent extends React.Component {
 
     constructor(props) {
         super(props);
-      
         this.state = {
             student:{
-                name: 'Alexander',
-                surname: 'Tsalapov',
+                name: '',
+                surname: '',
                 course: 1,
                 status: 'y',
             },
@@ -47,15 +47,11 @@ export default class CreateUpdateStudent extends React.Component {
         apiService.getStudent()
     }
     componentDidMount() {
-        // apiService.getStudents().then(response=> {
-        //     this.setState({students: response.data})
-        // })
-        const { match: { params } } = this.props;
+        let params = queryString.parse(this.props.location.search);
         if(params && params.id) {
             apiService.getStudent(params.id).then((studentreq)=>{
                 this.setState({student:studentreq})
-                console.log('hi')
-        })
+            })
         }
     }
     

@@ -1,10 +1,256 @@
-.my-nav {
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500;300&display=swap");
+* {
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: .5px;
+}
+
+body {
+  background: url("../Images/backdround_blured2.jpg") 50% -450px;
+  color: #91ccec;
+}
+
+body .mainPage {
+  padding: 0 40px;
+}
+
+body .staff {
+  padding: 0 40px;
+  height: 20vh;
+}
+
+body .admin {
+  padding: 20px 40px;
+  background: #00517c;
+  height: 70vh;
+}
+
+body .admin .admin__title {
+  color: #bff1ff;
+  font-size: 23px;
+}
+
+body .admin .table__description {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify !important;
-      -ms-flex-pack: justify !important;
-          justify-content: space-between !important;
-  color: yellow;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: #bff1ff;
+}
+
+body .admin .table__description .admin__button {
+  border: 2px solid #00517c;
+  border-radius: 4px;
+  padding: 9px 10px;
+  background-color: #0075b4;
+  color: #bff1ff;
+  cursor: pointer;
+  -webkit-transition: .4s;
+  transition: .4s;
+  text-decoration: none;
+}
+
+body .admin .table__description .admin__button:hover {
+  background-color: #00517c;
+  border: 2px solid #0075b4;
+  color: #bff1ff;
+}
+
+body .admin .table {
+  text-align: center;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+body .admin .table .table__head {
+  cursor: pointer;
+  font-size: 19px;
+  background-color: #0075b4;
+  color: #d7f6ff;
+}
+
+body .admin .table .table__head th {
+  padding: 12px 30px;
+}
+
+body .admin .table .table__head th:first-child {
+  border-right: 3px solid #00517c;
+  padding: 12px 8px;
+}
+
+body .admin .table .table__body {
+  font-size: 17px;
+  color: #bff1ff;
+  background-color: #006da8;
+}
+
+body .admin .table .table__body td {
+  padding: 14px 30px;
+}
+
+body .admin .table .table__body td:first-child {
+  padding: 12px 8px;
+  border-right: 3px solid #00517c;
+}
+
+body .admin .table .table__delete {
+  border: 2px solid #b40c0c;
+  border-radius: 4px;
+  padding: 9px 10px;
+  background-color: #b40c0c;
+  color: #bff1ff;
+  cursor: pointer;
+  -webkit-transition: .4s;
+  transition: .4s;
+  font-size: 17px;
+  margin-right: 17px;
+}
+
+body .admin .table .table__delete:hover {
+  background-color: #006da8;
+  border: 2px solid #b40c0c;
+  color: white;
+}
+
+body .admin .table .table__update {
+  border: 2px solid #00517c;
+  border-radius: 4px;
+  padding: 9px 10px;
+  background-color: #00517c;
+  color: #bff1ff;
+  cursor: pointer;
+  -webkit-transition: .4s;
+  transition: .4s;
+  text-decoration: none;
+}
+
+body .admin .table .table__update:hover {
+  background-color: #006da8;
+  border: 2px solid #00517c;
+  color: white;
+}
+
+body .header .navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #0075b4;
+  padding: 10px 40px;
+}
+
+body .header .navbar .navbar__brand {
+  font-size: 30px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+body .header .navbar .ul__links {
+  width: 24em;
+}
+
+body .header .navbar .navbar__ul {
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+body .header .navbar .navbar__ul .navbar__item {
+  padding-left: 13px;
+}
+
+body .header .navbar .navbar__ul .navbar__item .navbar__link {
+  font-size: 18px;
+  text-decoration: none;
+  -webkit-transition: .5s;
+  transition: .5s;
+  color: #d7f6ff;
+}
+
+body .header .navbar .navbar__ul .navbar__item .navbar__link:hover {
+  text-shadow: 0 0 50px black;
+}
+
+body .loginForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 90vh;
+}
+
+body .loginForm .loginForm__title {
+  font-size: 53px;
+  color: #91ccec;
+}
+
+body .loginForm .loginForm__div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+body .loginForm .loginForm__div .loginForm__label {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+body .loginForm .loginForm__div .loginForm__input {
+  border: 1px solid #bff1ff;
+  border-radius: 5px;
+  padding: 7px 10px;
+  font-size: 18px;
+  background-color: #bff1ff;
+  width: 300px;
+}
+
+body .loginForm .loginForm__button {
+  margin-top: 12px;
+  border: 1px solid #91ccec;
+  border-radius: 5px;
+  background-color: #91ccec;
+  padding: 7px 15px;
+  color: #006da8;
+  font-size: 18px;
+  cursor: pointer;
+  -webkit-transition: .55s;
+  transition: .55s;
+  font-weight: 500;
+  width: 100%;
+}
+
+body .loginForm .loginForm__button:hover {
+  background-color: rgba(0, 109, 168, 0);
+  border: 1px solid #91ccec;
+  color: #91ccec;
 }
 /*# sourceMappingURL=Style.css.map */

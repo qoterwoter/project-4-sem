@@ -49,36 +49,36 @@ class Login extends React.Component {
 
   render() {
     return(
-    <div className='container'>
-      <h1>Войдите</h1>
-      <form className='form-group'>
-        <div className='mb-3'>
-          <label className='form-label' for='username'>
+    <div className='loginForm'>
+      <h1 className='loginForm__title'>Войдите</h1>
+      <form>
+        <div className='loginForm__div'>
+          <label className='loginForm__label' for='username'>
             Имя пользователя:
           </label>
             <input 
               id='username'
-              className='form-control'
+              className='loginForm__input'
               type='text'
               name="username"
               value={this.state.credentials.username}
               onChange={this.inputChange}
             />
         </div>
-        <div className='mb-3'>
-          <label for='password' className='form-label'>
+        <div className='loginForm__div'>
+          <label className='loginForm__label' for='password'>
             Пароль:
           </label>
           <input
             id='password'
-            className='form-control'
+            className='loginForm__input'
             type="password"
             name="password"
             value={this.state.credentials.password} 
             onChange={this.inputChange}
           />
         </div>
-        <button className='btn btn-success' onClick={this.login}>Войти</button>
+        <button className='loginForm__button' onClick={this.login}>Войти</button>
       </form>
     </div>
   )}

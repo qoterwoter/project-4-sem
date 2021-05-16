@@ -5,8 +5,10 @@ import Admin from './Admin'
 export default class Main extends React.Component {
     render() {
         return(
-        <main className='container'>
-            <h2>Мой проект</h2>
+        <main>
+            <div className='mainPage'>
+                <h2 className="mainPage__title">Мой проект</h2>
+            </div>
             {this.props.is_staff===true
             ? <Staff/>
             : null

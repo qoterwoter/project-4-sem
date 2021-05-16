@@ -48,12 +48,17 @@ export default class Admin extends React.Component {
         })
     
     }
-    
+    handleSort(e) {
+        this.state.students.name.sort()
+    }
     render(){
         return(
-            <div>
-                <h3>Отдел администратора</h3>
-                <h4>Список студентов</h4>
+            <div className='admin'>
+                <h3 className='admin__title'>Отдел администратора</h3>
+                <div className='table__description'>
+                    <h4 className='table__title'>Список студентов</h4>
+                    <Link className='admin__button' to='/CreateUpdateStudent'>Добавить студента</Link>
+                </div>
                 {/* <ul>
                 {this.state.students.map((student)=>
                     <li key={student.id}>
@@ -65,9 +70,9 @@ export default class Admin extends React.Component {
                 )}
                 </ul> */}
                 <table className='table'>
-                    <thead>
-                        <tr>
-                            <th scope='col'>#</th>
+                    <thead className='table__head'>
+                        <tr className='table__row'>
+                            <th onClick={()=>this.handleSort('id')} scope='col'>#</th>
                             <th scope='col'>Имя</th>
                             <th scope='col'>Фамилия</th>
                             <th scope='col'>Статус</th>
@@ -75,21 +80,20 @@ export default class Admin extends React.Component {
                             <th scope='col'></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='table__body'>
                         {this.state.students.map((student)=>
-                           <tr scope='row'>
+                           <tr className='table__row' scope='row'>
                                <td>{student.id}</td>
                                <td>{student.name}</td>
                                <td>{student.surname}</td>
-                               <td>{student.status}</td>
+                               <td>{apiService.getStatus(student.status)}</td>
                                <td>{student.course}</td>
-                               <td><button className='btn btn-danger m-3 mt-0 mb-0 mr-0' onClick={e=>apiService.deleteStudent(student.id)}>Удалить</button>
-                               <Link className='btn btn-primary' to={'/CreateUpdateStudent/'+student.id}>Изменить</Link></td>
+                               <td><button className='table__delete' onClick={e=>apiService.deleteStudent(student.id)}>Удалить</button>
+                               <Link className='table__update' to={'/CreateUpdateStudent/?id='+student.id}>Изменить</Link></td>
                            </tr> 
                         )}
                     </tbody>
                 </table>
-                <Link className='btn btn-success' to='/CreateUpdateStudent'>Добавить студента</Link>
             </div>
         )
     }

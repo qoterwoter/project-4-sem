@@ -1,0 +1,204 @@
+// @import url('bootstrap/dist/css/bootstrap.css');
+// @import url('bootstrap/scss/bootstrap.scss');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;300&display=swap');
+$text-color: #91ccec;
+$background: #006da8;
+$background-light: #0075b4;
+$background-dark: #00517c;
+$background-image_blured: url('../Images/backdround_blured2.jpg');
+$background-image: url('../Images/background2.jpg');
+$margin-size: 12px;
+$font-size: 18px;
+$link-color: #d7f6ff;
+$text-light: #bff1ff;
+$text-danger: #b40c0c;
+
+* {
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: .5px;
+}
+body {
+    background: $background-image_blured 50% -450px;
+    color:$text-color;
+    .mainPage {
+        padding: 0 40px;
+    }
+    .staff {
+        padding: 0 40px;
+        height: 20vh;
+    }
+    .admin {
+        padding: 20px 40px;
+        background: $background-dark;
+        height: 70vh;
+        .admin__title {
+            color: $text-light;
+            font-size: 23px;
+        }
+        .table__description {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: $text-light;
+            .admin__button {
+                border: 2px solid $background-dark;
+                border-radius: 4px;
+                padding: 9px 10px;
+                background-color: $background-light;
+                color: $text-light;
+                cursor: pointer;
+                transition: .4s;
+                text-decoration: none;
+                &:hover {
+                    background-color: $background-dark;
+                    border: 2px solid $background-light;
+                    color: $text-light
+                }
+            }
+        }
+        .table {
+            $fone-size: 17px;
+            text-align: center;
+            border-collapse: collapse;
+            width: 100%;
+            .table__head{
+                cursor: pointer;
+                font-size: $fone-size+2px;
+                background-color: $background-light;
+                color: $link-color;
+                th {
+                    padding: 12px 30px;
+                    &:first-child {
+                        border-right: 3px solid $background-dark;
+                        padding: 12px 8px;
+                    }
+                }
+            }
+            .table__body {
+                font-size: $fone-size;
+                color: $text-light;
+                background-color: $background;
+                td {
+                    padding: 14px 30px;
+                    &:first-child {
+                        padding: 12px 8px;
+                        border-right: 3px solid $background-dark;
+                    }
+                }
+            }
+            .table__delete {
+                border: 2px solid $text-danger;
+                border-radius: 4px;
+                padding: 9px 10px;
+                background-color: $text-danger;
+                color: $text-light;
+                cursor: pointer;
+                transition: .4s;
+                font-size: $fone-size;
+                margin-right: $fone-size;
+                &:hover {
+                    background-color: $background;
+                    border: 2px solid $text-danger;
+                    color: white;
+                }
+            }
+            .table__update {
+                border: 2px solid $background-dark;
+                border-radius: 4px;
+                padding: 9px 10px;
+                background-color: $background-dark;
+                color: $text-light;
+                cursor: pointer;
+                transition: .4s;
+                text-decoration: none;
+                &:hover {
+                    background-color: $background;
+                    border: 2px solid $background-dark;
+                    color: white;
+                }
+            }
+        }
+    }
+    .header {
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: $background-light;
+            padding: 10px 40px;
+            .navbar__brand {
+                font-size: 30px;
+                color: #ffffff;
+                text-decoration: none;
+            }
+            .ul__links {
+                width: 24em;
+            }
+            .navbar__ul {
+                list-style-type: none;
+                display: flex;
+                justify-content: space-between;
+                .navbar__item {
+                    padding-left: 13px;
+                    .navbar__link {
+                        font-size: 18px;
+                        text-decoration: none;
+                        transition: .5s;
+                        color: $link-color;
+                        &:hover {
+                            text-shadow: 0 0 50px black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .loginForm {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; 
+        align-items: center;
+        height: 90vh;
+        .loginForm__title {
+            font-size: 53px;
+            color: $text-color;
+        }
+        .loginForm__div {
+            display: flex;
+            flex-direction: column;
+            margin-top: $margin-size;
+            margin-bottom: $margin-size;
+            .loginForm__label {
+                margin-bottom: $margin-size;
+                font-size: $font-size;
+            }
+            .loginForm__input {
+                border: 1px solid $text-light;
+                border-radius: 5px;
+                padding: 7px 10px;
+                font-size: $font-size;
+                background-color: $text-light;
+                width: 300px;
+            }
+        }
+        .loginForm__button {
+            margin-top: $margin-size;
+            border: 1px solid $text-color;
+            border-radius: 5px;
+            background-color: $text-color;
+            padding: 7px 15px;
+            color: $background;
+            font-size: $font-size;
+            cursor: pointer;
+            transition: .55s;
+            font-weight: 500;
+            width: 100%;
+            &:hover {
+                background-color: rgba($background,0 );
+                border: 1px solid $text-color;
+                color: $text-color;
+            }
+        }
+    }
+}

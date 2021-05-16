@@ -78,7 +78,8 @@ class App extends React.Component {
         </Route>
         <Route path='/CreateUpdateStudent' component={CreateUpdateStudent}>
         </Route>
-        <Route path='/CreateUpdateStudent/:id' exact component={CreateUpdateStudent}>
+        {/* <Route path='/CreateUpdateStudent/:id' component={CreateUpdateStudent}> */}
+        <Route path='/CreateUpdateStudent/?id=id'> render={(props)=> <CreateUpdateStudent {...props}/>}
         </Route>
       </Switch>
     </Router> 
