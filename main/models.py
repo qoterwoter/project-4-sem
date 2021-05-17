@@ -1,12 +1,26 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 STATUS_CHOICE = (
     ('y','Учится'),
     ('n',"Отчсилен"),
     ('q','Зачислен'),
     ('a','Решается')
 )
+class News(models.Model):
+    
+    id = models.AutoField(primary_key=True)
+    title = models.TextField("Название новости")
+    description = models.TextField('Описание')
+    photo = models.TextField('Ссылка на фотографию')
+    date = models.DateField(("Дата публикации"), auto_now=False, auto_now_add=False)
+    # author = models.CharField('Автор публикации',max_length=55)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    class Meta:
+        verbose_name = ("Новость")
+        verbose_name_plural = ("Новости")
 
+    def __str__(self):
+        return str(self.title) 
 class Students(models.Model):
     
     id = models.AutoField(primary_key=True)
@@ -141,3 +155,4 @@ class TeachersPhotos(models.Model):
 
     def __str__(self):
         return ("фото "+  self.teacher.name + " " + self.teacher.surname)
+        

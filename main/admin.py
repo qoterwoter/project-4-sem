@@ -1,8 +1,16 @@
 from django.contrib import admin
-from .models import Students, StudentsPhoto, Projects, StudentsProjects, Lessons, StudentsLessons, Clients, EngineerProjects, Teachers, TeachersPhotos
+from .models import Students, StudentsPhoto, Projects, StudentsProjects, Lessons, StudentsLessons, Clients, EngineerProjects, Teachers, TeachersPhotos, News
 from django.db.models.functions import Lower
 from import_export.admin import ImportExportModelAdmin
 from import_export.formats import base_formats
+@admin.register(News)
+class NewsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+    list_display = ("id","title","description","date",'user')
+    search_fields = ['title','description']
+    list_filter = ['user','date']
+    pass
+    def get_orering(self,request):
+          return [Lower('id')]
 @admin.register(Students)
 class StudentsAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ("id","name","surname","status",'course')

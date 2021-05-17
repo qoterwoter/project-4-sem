@@ -11,7 +11,7 @@ export default class ApiTest extends React.Component {
         }
     }
     componentDidMount() {
-        apiService.getStudents().then(response=> {
+        apiService.getDatas().then(response=> {
             this.setState({students: response.data})
         })
     

@@ -12,6 +12,8 @@ $font-size: 18px;
 $link-color: #d7f6ff;
 $text-light: #bff1ff;
 $text-danger: #b40c0c;
+$input-color: #dbf7ff;
+$success-color: #bdffcd;
 
 * {
     padding: 0;
@@ -29,6 +31,8 @@ body {
         height: 20vh;
     }
     .admin {
+        $success-color: rgb(18, 194, 18);
+
         padding: 20px 40px;
         background: $background-dark;
         height: 70vh;
@@ -39,17 +43,19 @@ body {
         .table__description {
             display: flex;
             align-items: center;
+            font-size: $font-size;
             justify-content: space-between;
             color: $text-light;
             .admin__button {
                 border: 2px solid $background-dark;
                 border-radius: 4px;
-                padding: 9px 10px;
+                padding: 11px 14px;
                 background-color: $background-light;
                 color: $text-light;
                 cursor: pointer;
                 transition: .4s;
                 text-decoration: none;
+                font-size: $font-size;
                 &:hover {
                     background-color: $background-dark;
                     border: 2px solid $background-light;
@@ -68,9 +74,9 @@ body {
                 background-color: $background-light;
                 color: $link-color;
                 th {
-                    padding: 12px 30px;
+                    padding: 19px 30px;
+                    border-bottom: 3px solid $background-dark;
                     &:first-child {
-                        border-right: 3px solid $background-dark;
                         padding: 12px 8px;
                     }
                 }
@@ -80,10 +86,10 @@ body {
                 color: $text-light;
                 background-color: $background;
                 td {
-                    padding: 14px 30px;
+                    padding: 10px 30px;
+                    border-bottom: 3px solid $background-light;
                     &:first-child {
                         padding: 12px 8px;
-                        border-right: 3px solid $background-dark;
                     }
                 }
             }
@@ -104,17 +110,17 @@ body {
                 }
             }
             .table__update {
-                border: 2px solid $background-dark;
+                border: 2px solid $success-color;
                 border-radius: 4px;
                 padding: 9px 10px;
-                background-color: $background-dark;
+                background-color: $success-color;
                 color: $text-light;
                 cursor: pointer;
                 transition: .4s;
                 text-decoration: none;
                 &:hover {
                     background-color: $background;
-                    border: 2px solid $background-dark;
+                    border: 2px solid $success-color;
                     color: white;
                 }
             }
@@ -178,7 +184,7 @@ body {
                 border-radius: 5px;
                 padding: 7px 10px;
                 font-size: $font-size;
-                background-color: $text-light;
+                background-color: $input-color;
                 width: 300px;
             }
         }
@@ -198,6 +204,65 @@ body {
                 background-color: rgba($background,0 );
                 border: 1px solid $text-color;
                 color: $text-color;
+            }
+        }
+    }
+    .createUpdateForm {
+        $fone-size: 20px;
+        display: flex;
+        flex-direction: column;
+        padding: 10px 540px;
+        .createUpdateForm__title {
+            font-size: $fone-size+5px;
+        }
+        .createUpdateForm__label {
+            font-size: $fone-size;
+            margin-top: $margin-size;
+            margin-bottom: $margin-size;
+        }
+        .createUpdateForm__input, 
+        .createUpdateForm__select {
+            border: 1px solid $text-light;
+            border-radius: 5px;
+            padding: 7px 10px;
+            font-size: $font-size;
+            background-color: $input-color;
+        }
+        .createUpdateForm__buttons {
+            display: flex;
+            .createUpdateForm__button {
+                font-size: $fone-size +2px;
+                margin-top: $margin-size;
+                border: 1px solid $text-color;
+                border-radius: 5px;
+                padding: 7px 15px;
+                font-size: $font-size;
+                cursor: pointer;
+                transition: .55s;
+                font-weight: 500;
+                width: 100%;
+                text-decoration: none;
+                text-align: center;
+            }
+            .button__save {
+                color:black;
+                background-color: $success-color;
+                margin-right: 10px;
+                &:hover {
+                    color: $success-color;
+                    border-color: $success-color;
+                    background-color:rgba(black,0)
+                }
+            }
+            .button__back {
+                margin-left: 10px;
+                color: $background-dark;
+                background-color: $input-color;
+                &:hover {
+                    background-color:rgba(black,0);
+                    color: $input-color;
+                    border-color: $input-color;
+                }
             }
         }
     }

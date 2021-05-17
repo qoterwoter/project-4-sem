@@ -23,8 +23,8 @@ export default class ApiService extends React.Component {
         }
         return outStat
     }
-    async getStudents() {
-        let url = URL + '/students/'
+    async getDatas(link) {
+        let url = URL + `/${link}/`
         const response = await fetch(url, {
             method: "GET", 
             headers: {
@@ -35,8 +35,8 @@ export default class ApiService extends React.Component {
         return response
     }
 
-    async getStudent(id) {
-        let url = URL + `/students/${id}`;
+    async getData(id,link) {
+        let url = URL + `/${link}/${id}`;
         return await fetch(url,{
             method:"GET",
             headers: {
@@ -46,8 +46,8 @@ export default class ApiService extends React.Component {
         .then((res)=> res.json())
     }
 
-    async deleteStudent(id){
-        let url = URL + `/students/${id}`;
+    async deleteData(id,link){
+        let url = URL + `/${link}/${id}`;
         return await fetch(url,{
             method:"DELETE",
             headers: {
@@ -56,8 +56,8 @@ export default class ApiService extends React.Component {
         })
     }
 
-    async createStudent(student) {
-        let url = URL + `/students/`;
+    async createData(student,link) {
+        let url = URL + `/${link}/`;
         return fetch(url, {
             method: 'POST',
             body: JSON.stringify(student),
@@ -69,10 +69,10 @@ export default class ApiService extends React.Component {
         .then(res=>{console.log(res)})
     }
 
-    async updateStudent(student) {
-        let url = URL + `/students/${student.id}`
+    async updateData(student,link) {
+        let url = URL + `/${link}/${student.id}`
         return fetch(url, {
-            method: 'POST',
+            method: 'PUT',
             body: JSON.stringify(student),
             headers: {
                 'Content-type':'application/json',

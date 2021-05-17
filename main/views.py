@@ -93,6 +93,21 @@ def students_detail(request,id):
         student.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+@api_view(['GET','POST'])
+def news_list(request):
+    if request.method == 'GET':
+        news = News.objects.all()
+        serializer = NewsSerializer(news, many=True)
+        authentication_classes = [TokenAuthentication, ]
+        permission_classes = [IsAuthenticated, ]
+        return JsonResponse({"data": serializer.data})
+
+    elif request.method == 'POST':
+        serializer = NewsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ProjectsView(APIView):
     def get(self, request):

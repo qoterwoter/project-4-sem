@@ -3,7 +3,7 @@ import ApiService from '../Api/ApiService';
 import {Link} from 'react-router-dom'
 
 const apiService = new ApiService();
-
+const link = 'students'
 export default class Admin extends React.Component {
 
     constructor(props) {
@@ -29,7 +29,7 @@ export default class Admin extends React.Component {
             "status": student.status,
             "course": student.course,
         }
-        apiService.createStudent(value)
+        apiService.createData(value,link)
     }
     handleChange(e) {
         // this.setState({...this.state.name,name: e.target.value})
@@ -43,13 +43,12 @@ export default class Admin extends React.Component {
         console.log(this.state.student)
     }
     componentDidMount() {
-        apiService.getStudents().then(response=> {
+        apiService.getDatas(link).then(response=> {
             this.setState({students: response.data})
         })
-    
     }
     handleSort(e) {
-        this.state.students.name.sort()
+        this.state.students.sort()
     }
     render(){
         return(
@@ -88,7 +87,7 @@ export default class Admin extends React.Component {
                                <td>{student.surname}</td>
                                <td>{apiService.getStatus(student.status)}</td>
                                <td>{student.course}</td>
-                               <td><button className='table__delete' onClick={e=>apiService.deleteStudent(student.id)}>Удалить</button>
+                               <td><button className='table__delete' onClick={e=>apiService.deleteData(student.id,link)}>Удалить</button>
                                <Link className='table__update' to={'/CreateUpdateStudent/?id='+student.id}>Изменить</Link></td>
                            </tr> 
                         )}

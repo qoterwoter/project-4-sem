@@ -1,18 +1,18 @@
 import React from 'react'
+import { withRouter} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import '../Styles/Style.css'
 
-export default class Header extends React.Component {
+class Header extends React.Component {
 
     logout = event => {
         event.preventDefault();
+        this.props.setLogged(false)
         sessionStorage.removeItem('token')
         sessionStorage.removeItem('username')
         sessionStorage.removeItem('is_staff')
         sessionStorage.removeItem('is_superuser')
-        setTimeout(()=> {
-            window.location.reload()
-        },100)
+        this.props.history.push("/");
     }
 
     render() {return(
@@ -39,3 +39,5 @@ export default class Header extends React.Component {
         </header>
     )}
 }
+const HeaderWithRouter = withRouter(Header)
+export default HeaderWithRouter

@@ -2,10 +2,11 @@ import React from 'react'
 import ApiService from '../Api/ApiService';
 import {Link} from 'react-router-dom'
 import queryString from 'query-string';
+import { withRouter } from 'react-router-dom'
 
 const apiService = new ApiService();
 
-export default class CreateUpdateStudent extends React.Component {
+class CreateUpdateStudent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -16,13 +17,13 @@ export default class CreateUpdateStudent extends React.Component {
                 course: 1,
                 status: 'y',
             },
-            students:[]
+            students:[],
+            params: queryString.parse(this.props.location.search)
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(event) {
-        event.preventDefault()
+    handleCreate() {
         let student = this.state.student
         let value = {
             "name": student.name,
@@ -31,6 +32,17 @@ export default class CreateUpdateStudent extends React.Component {
             "course": student.course,
         }
         apiService.createStudent(value)
+        this.props.history.push("/Main")
+    }
+
+    handleSubmit(event) {
+        let params = this.state.params;
+        event.preventDefault()
+        if(params&&params.id) {
+            this.handleUpdate(params.id)
+        } else {
+            this.handleCreate();
+        }
     }
     handleChange(e) {
         // this.setState({...this.state.name,name: e.target.value})
@@ -44,10 +56,12 @@ export default class CreateUpdateStudent extends React.Component {
         console.log(this.state.student)
     }
     handleUpdate(e) {
-        apiService.getStudent()
+        console.log(apiService.getStudent(e))
+        this.props.history.push("/Main")
+        apiService.updateStudent(this.state.student)
     }
     componentDidMount() {
-        let params = queryString.parse(this.props.location.search);
+        let params = this.state.params;
         if(params && params.id) {
             apiService.getStudent(params.id).then((studentreq)=>{
                 this.setState({student:studentreq})
@@ -57,60 +71,56 @@ export default class CreateUpdateStudent extends React.Component {
     
     render(){
         return(
-            <div className='is_superuser'>
-            <form className='form-group' onSubmit={this.handleSubmit}>
-                <h4>Добавить студента</h4>
-                <label for ='name'> Имя:</label>
+            <form className='createUpdateForm' onSubmit={this.handleSubmit}>
+                <h4 className='createUpdateForm__title'>Добавить студента</h4>
+                <label className='createUpdateForm__label' for ='name'> Имя:</label>
                 <input
                     id='name'
-                    className="form-control"
+                    className="createUpdateForm__input"
                     name='name'
                     type="text"
                     value={this.state.student.name}
                     onChange={e=>this.handleChange(e)}
                 />
-                <label for='surname'> Фамилия:</label><input
+                <label className='createUpdateForm__label' for='surname'> Фамилия:</label><input
                     id='surname'
-                    className="form-control"
+                    className="createUpdateForm__input"
                     name='surname'
                     type="text"
                     value={this.state.student.surname}
                     onChange={e=>this.handleChange(e)}
                 />
-                <label for='status'> Статус обучения:<br/>(учится/отчислен/выпустился и т.п.)</label>
-                {/* <input
-                    id='status'
-                    className="form-control"
-                    name='status'
-                    type="text"
-                    value={this.state.student.status}
-                    onChange={e=>this.handleChange(e)}
-                /> */}
+                <label className='createUpdateForm__label' for='status'> Статус обучения:<br/>(учится/отчислен/выпустился и т.п.)</label>
                 <select 
-                id='status'
-                className='form-select'
-                name='status'
-                value={this.state.student.status} 
-                onChange={e=>this.handleChange(e)}
+                    id='status'
+                    className='createUpdateForm__select'
+                    name='status'
+                    value={this.state.student.status} 
+                    onChange={e=>this.handleChange(e)}
                 >
                     <option value='y'>Учится</option>
                     <option value='q'>Зачислен</option>
                     <option value='n'>Отчислен</option>
                     <option value='a'>Решается</option>
                 </select>
-                <label for='course'> Курс:</label>
+                <label className='createUpdateForm__label' for='course'> Курс:</label>
                 <input
                     id='course'
-                    className="form-control"
+                    className="createUpdateForm__input"
                     name='course'
                     type="text"
                     value={this.state.student.course}
                     onChange={e=>this.handleChange(e)}
                 />
-                <input className="btn btn-success mt-4" type="submit" value="Сохранить" />
-                <Link className='btn btn-primary mt-4 ml-3' to='/Main'>Назад</Link>
+                <div className='createUpdateForm__buttons'>
+                    <input className="createUpdateForm__button button__save" type="submit" value="Сохранить" />
+                    <Link className='createUpdateForm__button button__back' to='/Main'>Назад</Link>
+                </div>
             </form>
-        </div>
         )
     }
 }
+
+
+const CreateUpdateStudentWithRouter = withRouter(CreateUpdateStudent)
+export default CreateUpdateStudentWithRouter

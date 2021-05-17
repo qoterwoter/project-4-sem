@@ -12,43 +12,27 @@ class App extends React.Component {
     super(props);
     this.state = {
       is_logged: sessionStorage.getItem('token') ? true: false,
-      users: [],
       token: null,
-      is_staff: sessionStorage.getItem('is_staff'),
-      is_superuser: sessionStorage.getItem('is_superuser'),
-      // url: 'http://localhost:8000/'
-      url: 'http://localhost:8000/'
+      is_staff: false,
+      is_superuser: false,
     }
+
+    this.setLoggedStatus = this.setLoggedStatus.bind(this)
+    this.setisStaffIsSuperuser = this.setisStaffIsSuperuser.bind(this)
   }
   onChangeToken = e => {
     this.setState(e)
   }
-  getPermissions = event => {
-    fetch(`${this.state.url}api/users/`,{
-      method: "GET",
-      headers: {
-        'Content-type' :'application/json',
-        'Authorization': `Token ${sessionStorage.getItem('token')}`
-      }
-    })
-    .then(res => res.json())
-    .then(res=>{
-      this.setState({users:res})
-      this.state.users.map((user)=>{
-          if(user.username===sessionStorage.getItem('username')) {
-            this.setState({'is_staff':user.is_staff})
-            this.setState({'is_superuser':user.is_superuser})
-            console.log(`is_staff: ${this.state.is_staff}`)
-            console.log(`is_superuser: ${this.state.is_superuser}`)
-        }
-      })
-    })
-
-  }
   componentDidMount() {
-    if(sessionStorage.getItem('token')!==null){
-      this.getPermissions()
+    if(sessionStorage.getItem('token')!==undefined){
+      this.setState({'is_logged':false})
     }
+  }
+  setisStaffIsSuperuser(is_staff,is_superuser) {
+    this.setState({'is_staff':is_staff,'is_superuser':is_superuser})
+  }
+  setLoggedStatus(e) {
+    this.setState({'is_logged':e});
   }
   render() {
     if(sessionStorage.getItem('token')===null||sessionStorage.getItem('token')===undefined) {
@@ -57,13 +41,26 @@ class App extends React.Component {
         <LoginForm 
           token={this.state.token}
           url={this.state.url}
+          is_logged={this.state.is_logged}
+          setLogged={this.setLoggedStatus}
+          is_staff={this.state.is_staff}
+          is_superuser={this.state.is_superuser}
+          set_status={this.setisStaffIsSuperuser}
         />
       </Router>
       )
     } else {
     return(
     <Router>
-      <Header/>
+      <Header
+          token={this.state.token}
+          url={this.state.url}
+          is_logged={this.state.is_logged}
+          setLogged={this.setLoggedStatus}
+          is_staff={this.state.is_staff}
+          is_superuser={this.state.is_superuser}
+          set_status={this.setisStaffIsSuperuser}
+        />
       <Switch>
       <Route path='/Main'>
           <Main

@@ -9,12 +9,38 @@ class Login extends React.Component {
         username: '',
         password: '',
       },
+      url: 'http://localhost:8000/',
       data: {},
+      users: [],
+      token: null,
     }
   }
-  login = event => {
+  
+  getPermissions = async event => {
+    await fetch(`${this.state.url}api/users/`,{
+      method: "GET",
+      headers: {
+        'Content-type' :'application/json',
+        'Authorization': `Token ${sessionStorage.getItem('token')}`
+      }
+    })
+    .then(res => res.json())
+    .then(res=>{
+      this.setState({users:res})
+      this.state.users.map((user)=>{
+          if(user.username===sessionStorage.getItem('username')) {
+            sessionStorage.setItem('is_staff',user.is_staff)
+            this.props.set_status(user.is_staff,user.is_superuser)
+            console.log(this.props.is_staff,this.props.is_superuser)
+        }
+      })
+    })
+    this.props.history.push("/Main");
+    this.props.setLogged(true)
+  }
+  login = async (event,callback) => {
     event.preventDefault()
-    fetch(`${this.props.url}auth/`, {
+    await fetch(`${this.state.url}auth/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -23,22 +49,19 @@ class Login extends React.Component {
     })
     .then(res=>res.json())
     .then(res=>{
-      console.log(res.token)
       this.setState({data:res})
-      if(res.token!==null||res.token!==undefined) {
+      if(res.token!==null && res.token!==undefined) {
         sessionStorage.setItem('token',res.token)
+        this.setState({'token':res.token})
       }
     })
     .catch(err=>console.error(err))
 
-
-    if(sessionStorage.getItem('token')!==null || sessionStorage.getItem("token")!==undefined || sessionStorage.getItem('token')!=='') {
-      this.props.history.push("/Main")
-      setTimeout(()=>{
-        window.location.reload()
-      },200)
+    if(sessionStorage.getItem('token')!==undefined && sessionStorage.getItem('token')!=='') {
+      this.getPermissions();
+      }
     }
-  }
+  
 
   inputChange = event => {
     let cred = this.state.credentials;
@@ -78,7 +101,7 @@ class Login extends React.Component {
             onChange={this.inputChange}
           />
         </div>
-        <button className='loginForm__button' onClick={this.login}>Войти</button>
+        <button className='loginForm__button' onClick={e=>this.login(e)}>Войти</button>
       </form>
     </div>
   )}

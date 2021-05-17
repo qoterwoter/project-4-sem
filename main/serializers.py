@@ -28,6 +28,26 @@ class StudentsSerializer(serializers.Serializer):
         instance.course = validated_data.get('course',instance.course)
         instance.save()
         return instance
+class NewsSerializer(serializers.Serializer):
+    id = serializers.ReadOnlyField()
+    title = serializers.CharField(max_length=120)
+    description = serializers.CharField(max_length=120)
+    photo = serializers.CharField(max_length=120)
+    date = serializers.CharField(max_length=120)
+    user = serializers.CharField(max_length=120)
+    class Meta:
+        model = News
+        fields = ('id','title','description','photo','date','user')
+    def create(self, validated_data):
+        return News.objects.create(**validated_data)
+    def update(self, instance, validated_data):
+        instance.title = validated_data.get('title',instance.title)
+        instance.description = validated_data.get('description',instance.description)
+        instance.photo = validated_data.get('photo',instance.photo)
+        instance.date = validated_data.get('date',instance.date)
+        instance.user = validated_data.get('user',instance.user)
+        instance.save()
+        return instance
 class ProjectsSerializer(serializers.Serializer):
     id = serializers.CharField()
     name = serializers.CharField(max_length=120)

@@ -37,6 +37,7 @@ body .admin .table__description {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-size: 18px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -46,13 +47,14 @@ body .admin .table__description {
 body .admin .table__description .admin__button {
   border: 2px solid #00517c;
   border-radius: 4px;
-  padding: 9px 10px;
+  padding: 11px 14px;
   background-color: #0075b4;
   color: #bff1ff;
   cursor: pointer;
   -webkit-transition: .4s;
   transition: .4s;
   text-decoration: none;
+  font-size: 18px;
 }
 
 body .admin .table__description .admin__button:hover {
@@ -75,11 +77,11 @@ body .admin .table .table__head {
 }
 
 body .admin .table .table__head th {
-  padding: 12px 30px;
+  padding: 19px 30px;
+  border-bottom: 3px solid #00517c;
 }
 
 body .admin .table .table__head th:first-child {
-  border-right: 3px solid #00517c;
   padding: 12px 8px;
 }
 
@@ -90,12 +92,12 @@ body .admin .table .table__body {
 }
 
 body .admin .table .table__body td {
-  padding: 14px 30px;
+  padding: 10px 30px;
+  border-bottom: 3px solid #0075b4;
 }
 
 body .admin .table .table__body td:first-child {
   padding: 12px 8px;
-  border-right: 3px solid #00517c;
 }
 
 body .admin .table .table__delete {
@@ -118,10 +120,10 @@ body .admin .table .table__delete:hover {
 }
 
 body .admin .table .table__update {
-  border: 2px solid #00517c;
+  border: 2px solid #12c212;
   border-radius: 4px;
   padding: 9px 10px;
-  background-color: #00517c;
+  background-color: #12c212;
   color: #bff1ff;
   cursor: pointer;
   -webkit-transition: .4s;
@@ -131,7 +133,7 @@ body .admin .table .table__update {
 
 body .admin .table .table__update:hover {
   background-color: #006da8;
-  border: 2px solid #00517c;
+  border: 2px solid #12c212;
   color: white;
 }
 
@@ -229,7 +231,7 @@ body .loginForm .loginForm__div .loginForm__input {
   border-radius: 5px;
   padding: 7px 10px;
   font-size: 18px;
-  background-color: #bff1ff;
+  background-color: #dbf7ff;
   width: 300px;
 }
 
@@ -252,5 +254,81 @@ body .loginForm .loginForm__button:hover {
   background-color: rgba(0, 109, 168, 0);
   border: 1px solid #91ccec;
   color: #91ccec;
+}
+
+body .createUpdateForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 10px 540px;
+}
+
+body .createUpdateForm .createUpdateForm__title {
+  font-size: 25px;
+}
+
+body .createUpdateForm .createUpdateForm__label {
+  font-size: 20px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+body .createUpdateForm .createUpdateForm__input,
+body .createUpdateForm .createUpdateForm__select {
+  border: 1px solid #bff1ff;
+  border-radius: 5px;
+  padding: 7px 10px;
+  font-size: 18px;
+  background-color: #dbf7ff;
+}
+
+body .createUpdateForm .createUpdateForm__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .createUpdateForm .createUpdateForm__buttons .createUpdateForm__button {
+  font-size: 22px;
+  margin-top: 12px;
+  border: 1px solid #91ccec;
+  border-radius: 5px;
+  padding: 7px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  -webkit-transition: .55s;
+  transition: .55s;
+  font-weight: 500;
+  width: 100%;
+  text-decoration: none;
+  text-align: center;
+}
+
+body .createUpdateForm .createUpdateForm__buttons .button__save {
+  color: black;
+  background-color: #bdffcd;
+  margin-right: 10px;
+}
+
+body .createUpdateForm .createUpdateForm__buttons .button__save:hover {
+  color: #bdffcd;
+  border-color: #bdffcd;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+body .createUpdateForm .createUpdateForm__buttons .button__back {
+  margin-left: 10px;
+  color: #00517c;
+  background-color: #dbf7ff;
+}
+
+body .createUpdateForm .createUpdateForm__buttons .button__back:hover {
+  background-color: rgba(0, 0, 0, 0);
+  color: #dbf7ff;
+  border-color: #dbf7ff;
 }
 /*# sourceMappingURL=Style.css.map */

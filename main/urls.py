@@ -13,6 +13,7 @@ urlpatterns = [
     # path('students/', views.StudentsView.as_view(), name='students'),
     url(r'^students/$', views.students_list),
     url(r'^students/(?P<id>[0-9]+)$', views.students_detail),
+    url(r'^news/$',views.news_list),
     path('projects/', views.ProjectsView.as_view(), name='projects'),
     # path('users/', views.UserView.as_view(),name='users'),
     path ('',include(router.urls))
