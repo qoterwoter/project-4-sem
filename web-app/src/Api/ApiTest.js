@@ -2,7 +2,7 @@ import React from 'react';
 import ApiService from './ApiService'
 
 const apiService = new ApiService();
-
+const link = 'students';
 export default class ApiTest extends React.Component {
     constructor (props) {
         super(props)
@@ -11,7 +11,7 @@ export default class ApiTest extends React.Component {
         }
     }
     componentDidMount() {
-        apiService.getDatas().then(response=> {
+        apiService.getDatas(link).then(response=> {
             this.setState({students: response.data})
         })
     
@@ -26,7 +26,7 @@ export default class ApiTest extends React.Component {
                 {this.state.students.map((student)=>
                     <li key={student.id}>
                         #{student.id}: {student.name} {student.surname}<br/>
-                        {apiService.getStatus(student.status)} {student.course} курсе
+                        {apiService.getStatus(student.status,'на','после')} {student.course} курсе
                     </li>
                 )}
                 </ul>

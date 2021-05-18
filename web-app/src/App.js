@@ -13,8 +13,8 @@ class App extends React.Component {
     this.state = {
       is_logged: sessionStorage.getItem('token') ? true: false,
       token: null,
-      is_staff: false,
-      is_superuser: false,
+      is_staff: sessionStorage.getItem('is_staff'),
+      is_superuser: sessionStorage.getItem('is_superuser'),
     }
 
     this.setLoggedStatus = this.setLoggedStatus.bind(this)

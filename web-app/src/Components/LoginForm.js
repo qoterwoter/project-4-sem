@@ -30,6 +30,7 @@ class Login extends React.Component {
       this.state.users.map((user)=>{
           if(user.username===sessionStorage.getItem('username')) {
             sessionStorage.setItem('is_staff',user.is_staff)
+            sessionStorage.setItem('is_superuser',user.is_superuser)
             this.props.set_status(user.is_staff,user.is_superuser)
             console.log(this.props.is_staff,this.props.is_superuser)
         }
@@ -55,10 +56,12 @@ class Login extends React.Component {
         this.setState({'token':res.token})
       }
     })
-    .catch(err=>console.error(err))
+    .catch()
 
-    if(sessionStorage.getItem('token')!==undefined && sessionStorage.getItem('token')!=='') {
+    if(sessionStorage.getItem('token')!==null ) {
       this.getPermissions();
+      } else {
+        alert('Вы ввели неверные данные')
       }
     }
   

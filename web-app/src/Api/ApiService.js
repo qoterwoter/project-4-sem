@@ -3,20 +3,20 @@ const URL = 'http://localhost:8000/api';
 
 
 export default class ApiService extends React.Component {
-    getStatus(status) {
+    getStatus(status,postfix, secondpostfix) {
         let outStat;
         switch(status) {
             case 'q':
-                outStat = 'Зачислен на'
+                outStat = `Зачислен ${postfix}`
                 break
-            case 'y':
-                outStat = 'Учится на'
+            case `y`:
+                outStat = `Учится ${postfix}`
                 break
-            case 'a':
-                outStat = 'Решается об обучении на'
+            case `a`:
+                outStat = `Решается об обучении ${postfix}`
                 break
-            case 'n':
-                outStat = 'Отчислен после'
+            case `n`:
+                outStat = `Отчислен ${secondpostfix}`
                 break
             default:
                 break

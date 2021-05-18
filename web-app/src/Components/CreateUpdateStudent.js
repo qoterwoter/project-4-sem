@@ -5,7 +5,7 @@ import queryString from 'query-string';
 import { withRouter } from 'react-router-dom'
 
 const apiService = new ApiService();
-
+const url = 'students'
 class CreateUpdateStudent extends React.Component {
 
     constructor(props) {
@@ -31,7 +31,7 @@ class CreateUpdateStudent extends React.Component {
             "status": student.status,
             "course": student.course,
         }
-        apiService.createStudent(value)
+        apiService.createData(value,url)
         this.props.history.push("/Main")
     }
 
@@ -56,14 +56,13 @@ class CreateUpdateStudent extends React.Component {
         console.log(this.state.student)
     }
     handleUpdate(e) {
-        console.log(apiService.getStudent(e))
         this.props.history.push("/Main")
-        apiService.updateStudent(this.state.student)
+        apiService.updateData(this.state.student,url)
     }
     componentDidMount() {
         let params = this.state.params;
         if(params && params.id) {
-            apiService.getStudent(params.id).then((studentreq)=>{
+            apiService.getData(params.id,url).then((studentreq)=>{
                 this.setState({student:studentreq})
             })
         }
