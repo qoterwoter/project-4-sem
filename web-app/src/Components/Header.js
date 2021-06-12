@@ -27,7 +27,7 @@ class Header extends React.Component {
                         <Link className='navbar__link' to='/ApiTest'>ApiTest</Link>
                     </li>
                     <li className='navbar__item'>
-                        <a className='navbar__link' href='http://localhost:8000/students/'>RestAPI</a>
+                        <a className='navbar__link' href='http://project-4-sem.std-962.ist.mospolytech.ru/api/students/'>RestAPI</a>
                     </li>
                     <li className='navbar__item'>
                         <Link className='navbar__link' to='/AboutUs'>О нас</Link>
