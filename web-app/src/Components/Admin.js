@@ -93,7 +93,7 @@ export default class Admin extends React.Component {
                                <td>{student.id}</td>
                                <td>{student.name}</td>
                                <td>{student.surname}</td>
-                               <td>{apiService.getStatus(student.status,'','')}</td>
+                               <td>{apiService.getStatus(student.status,'','','')}</td>
                                <td>{student.course}</td>
                                <td><button className='table__delete' onClick={e=>{
                                 //    apiService.deleteData(student.id,link)

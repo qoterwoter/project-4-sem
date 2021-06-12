@@ -28,7 +28,7 @@ export default class AboutUs extends React.Component {
             видео и анимационных роликов; оцифрованную коллекцию грамот, дипломов, свидетельств, сертификатов, лицензий и прочих документов; рекомендации, комментарии,
             сообщения и советы друзей и педагогов.
             </p>
-            <img src='web-app/src/Images/background.jpg'></img>
+            <img src='/src/Images/background.jpg'></img>
         </div>
     )}
 }
