@@ -42,10 +42,19 @@ export default class Admin extends React.Component {
         })
         console.log(this.state.student)
     }
-    componentDidMount() {
+
+    getData() {
         apiService.getDatas(link).then(response=> {
             this.setState({students: response.data})
         })
+    }
+
+    handleDelete(id) {
+        apiService.deleteData(id,link)
+        this.getData();
+    }
+    componentDidMount() {
+        this.getData()
     }
     handleSort(e) {
         this.state.students.sort()
@@ -53,7 +62,6 @@ export default class Admin extends React.Component {
     render(){
         return(
             <div className='admin'>
-                <h3 className='admin__title'>Отдел администратора</h3>
                 <div className='table__description'>
                     <h4 className='table__title'>Список студентов</h4>
                     <Link className='admin__button' to='/CreateUpdateStudent'>Добавить студента</Link>
@@ -81,15 +89,18 @@ export default class Admin extends React.Component {
                     </thead>
                     <tbody className='table__body'>
                         {this.state.students.map((student)=>
-                           <tr className='table__row' scope='row'>
+                           <tr className='table__row'>
                                <td>{student.id}</td>
                                <td>{student.name}</td>
                                <td>{student.surname}</td>
                                <td>{apiService.getStatus(student.status,'','')}</td>
                                <td>{student.course}</td>
                                <td><button className='table__delete' onClick={e=>{
-                                   apiService.deleteData(student.id,link)
-                                   this.forceUpdate()
+                                //    apiService.deleteData(student.id,link)
+                                //    apiService.getDatas(link).then(response=> {
+                                //     this.setState({students: response.data})
+                                // })
+                                this.handleDelete(student.id)
                             }}>Удалить</button>
                                <Link className='table__update' to={'/CreateUpdateStudent/?id='+student.id}>Изменить</Link></td>
                            </tr> 

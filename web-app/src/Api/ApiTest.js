@@ -20,11 +20,11 @@ export default class ApiTest extends React.Component {
 
     render()  {
         return (
-            <main className='container'>
-                <h2>Список студентов</h2>
-                <ul>
+            <main className='apiTest'>
+                <h2 className='apiTest__title'>Список студентов</h2>
+                <ul className='apiTest__list'>
                 {this.state.students.map((student)=>
-                    <li key={student.id}>
+                    <li className='apiTest__item' key={student.id}>
                         #{student.id}: {student.name} {student.surname}<br/>
                         {apiService.getStatus(student.status,'на','после')} {student.course} курсе
                     </li>

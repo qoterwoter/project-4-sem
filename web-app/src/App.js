@@ -5,16 +5,17 @@ import Header from './Components/Header'
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Main from './Components/Main';
 import LoginForm from './Components/LoginForm';
+import AboutUs from './Components/AboutUs';
 import CreateUpdateStudent from './Components/CreateUpdateStudent'
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      is_logged: sessionStorage.getItem('token') ? true: false,
+      is_logged: localStorage.getItem('token') ? true: false,
       token: null,
-      is_staff: sessionStorage.getItem('is_staff'),
-      is_superuser: sessionStorage.getItem('is_superuser'),
+      is_staff: localStorage.getItem('is_staff'),
+      is_superuser: localStorage.getItem('is_superuser'),
     }
 
     this.setLoggedStatus = this.setLoggedStatus.bind(this)
@@ -24,7 +25,7 @@ class App extends React.Component {
     this.setState(e)
   }
   componentDidMount() {
-    if(sessionStorage.getItem('token')!==undefined){
+    if(localStorage.getItem('token')!==undefined){
       this.setState({'is_logged':false})
     }
   }
@@ -35,7 +36,7 @@ class App extends React.Component {
     this.setState({'is_logged':e});
   }
   render() {
-    if(sessionStorage.getItem('token')===null||sessionStorage.getItem('token')===undefined) {
+    if(localStorage.getItem('token')===null||localStorage.getItem('token')===undefined) {
       return (
       <Router>
         <LoginForm 
@@ -72,6 +73,9 @@ class App extends React.Component {
           <ApiTest
             url = {this.state.url}
           />
+        </Route>
+        <Route path='/AboutUs'>
+          <AboutUs></AboutUs>
         </Route>
         <Route path='/CreateUpdateStudent' component={CreateUpdateStudent}>
         </Route>

@@ -24,13 +24,15 @@ export default class Staff extends React.Component {
     render(){
     return(
         <div className='staff'>
-            <h2 className='staff__title'>Отдел персонала</h2>
+            <h2>Новости для персонала</h2>
             <div className='news'>
                 {this.state.news.map((newz)=>
-                    <div className='news__block'>
-                        <h4>{newz.title}</h4>
-                        <p>{newz.description}</p>
-                        <p>Автор: <i>{newz.user}</i></p>
+                    <div className='news__block block'>
+                        <h4 className='block__title'>{newz.title}</h4>
+                        <p className='block__description'>{newz.description}</p>
+                        <img className='block__image' src={newz.photo} alt='no description'/>
+                        <p className='block__author'>Автор: <i>{newz.user}</i></p>
+                        <p className='block__date'>Опубликовано: {newz.date}</p>
                     </div>
                 )}
             </div>

@@ -8,10 +8,10 @@ class Header extends React.Component {
     logout = event => {
         event.preventDefault();
         this.props.setLogged(false)
-        sessionStorage.removeItem('token')
-        sessionStorage.removeItem('username')
-        sessionStorage.removeItem('is_staff')
-        sessionStorage.removeItem('is_superuser')
+        localStorage.removeItem('token')
+        localStorage.removeItem('username')
+        localStorage.removeItem('is_staff')
+        localStorage.removeItem('is_superuser')
         this.props.history.push("/");
     }
 
@@ -28,6 +28,9 @@ class Header extends React.Component {
                     </li>
                     <li className='navbar__item'>
                         <a className='navbar__link' href='http://localhost:8000/students/'>RestAPI</a>
+                    </li>
+                    <li className='navbar__item'>
+                        <Link className='navbar__link' to='/AboutUs'>О нас</Link>
                     </li>
                 </ul>
                 <ul className='navbar__ul'>

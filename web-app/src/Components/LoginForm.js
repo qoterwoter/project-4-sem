@@ -21,19 +21,20 @@ class Login extends React.Component {
       method: "GET",
       headers: {
         'Content-type' :'application/json',
-        'Authorization': `Token ${sessionStorage.getItem('token')}`
+        'Authorization': `Token ${localStorage.getItem('token')}`
       }
     })
     .then(res => res.json())
     .then(res=>{
       this.setState({users:res})
       this.state.users.map((user)=>{
-          if(user.username===sessionStorage.getItem('username')) {
-            sessionStorage.setItem('is_staff',user.is_staff)
-            sessionStorage.setItem('is_superuser',user.is_superuser)
-            this.props.set_status(user.is_staff,user.is_superuser)
-            console.log(this.props.is_staff,this.props.is_superuser)
+          if(user.username===localStorage.getItem('username')) {
+            localStorage.setItem('is_staff',user.is_staff);
+            localStorage.setItem('is_superuser',user.is_superuser);
+            this.props.set_status(user.is_staff,user.is_superuser);
+            console.log(this.props.is_staff,this.props.is_superuser);
         }
+        return user;
       })
     })
     this.props.history.push("/Main");
@@ -52,13 +53,13 @@ class Login extends React.Component {
     .then(res=>{
       this.setState({data:res})
       if(res.token!==null && res.token!==undefined) {
-        sessionStorage.setItem('token',res.token)
+        localStorage.setItem('token',res.token)
         this.setState({'token':res.token})
       }
     })
     .catch()
 
-    if(sessionStorage.getItem('token')!==null ) {
+    if(localStorage.getItem('token')!==null ) {
       this.getPermissions();
       } else {
         alert('Вы ввели неверные данные')
@@ -70,7 +71,7 @@ class Login extends React.Component {
     let cred = this.state.credentials;
     cred[event.target.name] = event.target.value;
     this.setState({credentials: cred});
-    sessionStorage.setItem('username',cred.username)
+    localStorage.setItem('username',cred.username)
   }
 
   render() {

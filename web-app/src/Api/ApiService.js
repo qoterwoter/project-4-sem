@@ -28,7 +28,7 @@ export default class ApiService extends React.Component {
         const response = await fetch(url, {
             method: "GET", 
             headers: {
-                'Authorization':`Token ${sessionStorage.token}`,
+                'Authorization':`Token ${localStorage.token}`,
             }
         })
         .then((res) => res.json())
@@ -40,7 +40,7 @@ export default class ApiService extends React.Component {
         return await fetch(url,{
             method:"GET",
             headers: {
-                'Authorization':`Token ${sessionStorage.token}`,
+                'Authorization':`Token ${localStorage.token}`,
             }
         })
         .then((res)=> res.json())
@@ -51,7 +51,7 @@ export default class ApiService extends React.Component {
         return await fetch(url,{
             method:"DELETE",
             headers: {
-                'Authorization':`Token ${sessionStorage.token}`,
+                'Authorization':`Token ${localStorage.token}`,
             }
         })
     }
@@ -63,7 +63,7 @@ export default class ApiService extends React.Component {
             body: JSON.stringify(student),
             headers: {
                 'Content-type':'application/json',
-                'Authorization':`Token ${sessionStorage.token}`,
+                'Authorization':`Token ${localStorage.token}`,
             }
         })
         .then(res=>{console.log(res)})
@@ -76,7 +76,7 @@ export default class ApiService extends React.Component {
             body: JSON.stringify(student),
             headers: {
                 'Content-type':'application/json',
-                'Authorization':`Token ${sessionStorage.token}`,
+                'Authorization':`Token ${localStorage.token}`,
             }
         })
         .then(res=>{console.log(res)}) 
