@@ -17,7 +17,7 @@ class Login extends React.Component {
   }
   
   getPermissions = async event => {
-    await fetch(`${this.state.url}api/users/`,{
+    await fetch(`${this.state.url}/api/users/`,{
       method: "GET",
       headers: {
         'Content-type' :'application/json',
