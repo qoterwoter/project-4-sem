@@ -9,7 +9,7 @@ class Login extends React.Component {
         username: '',
         password: '',
       },
-      url: 'http://project-4-sem.std-962.ist.mospolytech.ru',
+      url: 'http://project-4-sem.std-962.ist.mospolytech.ru/',
       data: {},
       users: [],
       token: null,
@@ -17,7 +17,7 @@ class Login extends React.Component {
   }
   
   getPermissions = async event => {
-    await fetch(`${this.state.url}/api/users/`,{
+    await fetch(`${this.state.url}api/users/`,{
       method: "GET",
       headers: {
         'Content-type' :'application/json',
