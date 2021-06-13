@@ -175,6 +175,7 @@ body {
             justify-content: space-between;
             align-items: center;
             background-color: $background;
+            flex-wrap: wrap;
             padding: 10px 40px;
             .navbar__brand {
                 font-size: 30px;
@@ -186,6 +187,7 @@ body {
             }
             .navbar__ul {
                 list-style-type: none;
+                flex-wrap: wrap;
                 display: flex;
                 justify-content: space-between;
                 .navbar__item {

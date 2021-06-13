@@ -208,6 +208,8 @@ body .header .navbar {
       -ms-flex-align: center;
           align-items: center;
   background-color: #3C83ED;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   padding: 10px 40px;
 }
 
@@ -223,6 +225,8 @@ body .header .navbar .ul__links {
 
 body .header .navbar .navbar__ul {
   list-style-type: none;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
