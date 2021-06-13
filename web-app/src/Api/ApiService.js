@@ -1,5 +1,5 @@
 import React from 'react'
-const URL = 'http://project-4-sem.std-962.ist.mospolytech.ru';
+const URL = 'http://project-4-sem.std-962.ist.mospolytech.ru/api';
 
 
 export default class ApiService extends React.Component {
